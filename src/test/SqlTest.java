@@ -19,7 +19,7 @@ public class SqlTest {
     private static Model model;
 
     @BeforeClass
-    public static void setUp() throws ParseException {
+    public static void setUp() throws ParseException, IOException {
         connector               = SqlConnector.get();
         SimpleDateFormat format = new SimpleDateFormat(DATE_FORMAT);
         Date date               = format.parse("2019-02-05");

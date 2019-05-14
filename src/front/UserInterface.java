@@ -38,15 +38,13 @@ public class UserInterface {
                     String[] commandParams = Arrays.copyOfRange(command, 1, command.length);
 
                     result = commandType.execute(commandParams);
-                } catch (ParseException pe) {
+                } catch (ParseException | IOException e) {
                     System.out.println("The command parameters entered incorrectly.");
                     System.out.println(Command.HELP.execute());
-                } catch (IOException ioe) {
-                    System.out.println(Command.HELP.execute());
-                } catch (IllegalArgumentException ie) {
+                } catch (IllegalArgumentException e) {
                     System.out.println("The command entered incorrectly.");
                     System.out.println(Command.HELP.execute());
-                } catch (ArrayIndexOutOfBoundsException ae) {
+                } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println("Invalid number of command parameters");
                     System.out.println(Command.HELP.execute());
                 }

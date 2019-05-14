@@ -14,7 +14,7 @@ public class Model {
     private String currency;
     private static Map<String, Double> currencyMap = null;
 
-    public Model(Date date, double amount,String currency, String name){
+    public Model(Date date, double amount,String currency, String name) throws IOException {
         setDate(date);
         setAmount(amount);
         setCurrency(currency);
@@ -29,8 +29,12 @@ public class Model {
         this.amount = amount;
     }
 
-    private void setCurrency(String currency) {
-        this.currency = currency;
+    private void setCurrency(String currency) throws IOException {
+        if (getCurrencyMap().get(currency) != null) {
+            this.currency = currency;
+        } else {
+            throw new IOException();
+        }
     }
 
      private void setName(String name) {
@@ -63,4 +67,5 @@ public class Model {
         }
         return currencyMap;
     }
+
 }

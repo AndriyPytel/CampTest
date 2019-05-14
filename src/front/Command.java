@@ -20,7 +20,7 @@ public enum Command {
 
             Date   date     = format.parse (param[0]);
             double amount   = Double.parseDouble(param[1]);
-            String currency = param[2];
+            String currency = param[2].toUpperCase();
             String name     = String.join(" ", Arrays.copyOfRange(param,3, param.length)) ;
 
             return CommandPerformer.purchase(date, amount, currency, name);
@@ -90,7 +90,7 @@ public enum Command {
                         result.append(EXIT_DETAIL);
                     } break;
                     default: {
-                        result.append(COMMAND_LIST + "\n" + HELP_DETAIL);
+                        result.append(HELP_DETAIL);
                     }
                 }
             }
