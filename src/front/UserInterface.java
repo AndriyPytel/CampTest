@@ -24,34 +24,36 @@ public class UserInterface {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println(Command.HELP.execute());
+        try {
 
-        while (true){
-            String result = "";
 
-            try {
-                String [] command       = scanner.nextLine().split(" ");
-                Command commandType     = Command.valueOf(command[0].toUpperCase());
-                String[] commandParams  = Arrays.copyOfRange(command,1,command.length);
+            System.out.println(Command.HELP.execute());
 
-                result = commandType.execute(commandParams);
-            } catch (SQLException se) {
-                System.out.println("Can not connect to sql server");
-                Command.EXIT.execute();
-            } catch (ParseException pe) {
-                System.out.println("The command parameters entered incorrectly.");
-                System.out.println(Command.HELP.execute());
-            } catch (IOException ioe) {
-                System.out.println(Command.HELP.execute());
-            } catch (IllegalArgumentException ie){
-                System.out.println("The command entered incorrectly.");
-                System.out.println(Command.HELP.execute());
-            } catch (ArrayIndexOutOfBoundsException ae) {
-                System.out.println("Invalid number of command parameters");
-                System.out.println(Command.HELP.execute());
+            while (true) {
+                String result = "";
+
+                try {
+                    String[] command = scanner.nextLine().split(" ");
+                    Command commandType = Command.valueOf(command[0].toUpperCase());
+                    String[] commandParams = Arrays.copyOfRange(command, 1, command.length);
+
+                    result = commandType.execute(commandParams);
+                } catch (ParseException pe) {
+                    System.out.println("The command parameters entered incorrectly.");
+                    System.out.println(Command.HELP.execute());
+                } catch (IOException ioe) {
+                    System.out.println(Command.HELP.execute());
+                } catch (IllegalArgumentException ie) {
+                    System.out.println("The command entered incorrectly.");
+                    System.out.println(Command.HELP.execute());
+                } catch (ArrayIndexOutOfBoundsException ae) {
+                    System.out.println("Invalid number of command parameters");
+                    System.out.println(Command.HELP.execute());
+                }
+                System.out.println(result);
             }
-            System.out.println(result);
+        } catch (SQLException | ParseException | IOException e) {
+            System.out.println("Can not connect to sql server.\nThe program will be closed");
         }
     }
-
 }

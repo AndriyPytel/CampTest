@@ -47,7 +47,7 @@ public enum Command {
 
     REPORT {
         @Override
-        public String execute(String... param) throws SQLException, IOException {
+        public String execute(String... param) throws SQLException, ParseException, IOException{
 
             int year = Integer.parseInt(param[0]);
             String currency = param[1];
@@ -56,7 +56,7 @@ public enum Command {
     },
     HELP {
         @Override
-        public String execute(String... params){
+        public String execute(String... params) throws SQLException, ParseException, IOException{
 
             StringBuilder result = new StringBuilder();
 
